@@ -231,7 +231,7 @@ void *tpagerank(void *arg) {
 
         if (*(a->numiter) == 0) {
 
-            for(int i=a->start;i<a->end;i++) { // capire come dividere l'array
+            for(int i=a->start;i<a->end;i++) {
                 a->x[i] = 1/n;
                 
                 // fprintf(stderr,"PR nodo %d all'iterazione %d: %.10f\n", i, *(a->numiter), a->x[i]);
@@ -440,9 +440,6 @@ double *pagerank(grafo *g, double d, double eps, int maxiter, int taux, int *num
 }
 
 int main(int argc, char *argv[]) {
-    time_t s1;
-    time(&s1);
-
     // dati gestore segnali
     pthread_mutex_t sigmutex = PTHREAD_MUTEX_INITIALIZER;
     int numiter = 0;
@@ -665,11 +662,6 @@ int main(int argc, char *argv[]) {
     free(max);
     free(nodes);
     xpthread_mutex_destroy(&sigmutex,QUI);
-
-    time_t s2;
-    time(&s2);
-
-    fprintf(stderr, "Run time: %ld m %ld s\n", (s2-s1)/60, (s2-s1)%60);
 
     return 0;
 }
